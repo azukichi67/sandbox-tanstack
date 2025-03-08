@@ -1,0 +1,61 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+	"name": "tanstack",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"dockerComposeFile": [
+		"./compose.yml",
+		"./compose.dev.yml"
+	],
+	"service": "tanstack",
+	"workspaceFolder": "/usr/src/app",
+	"shutdownAction": "stopCompose",
+
+	"onCreateCommand": "npm ci",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"bradlc.vscode-tailwindcss",
+				"pkief.material-icon-theme",
+				"formulahendry.auto-rename-tag",
+				"formulahendry.auto-close-tag",
+				"gruntfuggly.todo-tree"
+			],
+			"settings": {
+				"editor.guides.bracketPairs": true,
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": "explicit"
+				},
+				"[typescript]": {
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"[typescriptreact]": {
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"explorer.compactFolders": false,
+				"workbench.editor.wrapTabs": true,
+				"typescript.tsserver.experimental.enableProjectDiagnostics": true,
+				"typescript.preferences.importModuleSpecifier": "non-relative"
+			}
+		}
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

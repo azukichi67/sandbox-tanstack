@@ -1,0 +1,8 @@
+name: tanstack
+
+services:
+  tanstack:
+    container_name: tanstack
+    build:
+      context: ./
+      target: build

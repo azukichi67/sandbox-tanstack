@@ -1,0 +1,16 @@
+name: tanstack
+volumes:
+  tanstack-node-modules:
+
+services:
+  tanstack:
+    build:
+      context: ./
+      target: development
+    ports:
+      - "5173:5173"
+    volumes:
+      - ..:/usr/src/app
+      - tanstack-node-modules:/usr/src/app/node_modules
+    env_file: devcontainer.env
+    command: sleep infinity
