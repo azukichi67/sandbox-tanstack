@@ -1,14 +1,7 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
-import { fetchAuthSession } from "aws-amplify/auth";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
-  beforeLoad: async () => {
-    const session = await fetchAuthSession();
-    if (session.tokens) {
-      throw redirect({ to: "/private" });
-    }
-  },
 });
 
 function HomeComponent() {

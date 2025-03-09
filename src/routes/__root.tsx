@@ -1,4 +1,4 @@
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute, useLocation } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import {
   fetchAuthSession,
@@ -12,15 +12,18 @@ export const Route = createRootRoute({
 });
 
 async function RootComponent() {
-  const session = await fetchAuthSession();
-  const isLogin = !!session.tokens;
-
+  const location = useLocation();
+  const isLogin = location.pathname === "/private";
   const onClick = isLogin
     ? async () => {
         await signOut();
         signOutRedirect();
       }
-    : () => {
+    : async () => {
+        const session = await fetchAuthSession();
+        if (session.tokens) {
+          await signOut();
+        }
         signInWithRedirect({
           options: {
             lang: "ja",
